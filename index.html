@@ -2,7 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 增强viewport设置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <!-- 添加iOS状态栏样式 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>生物膜功能与产品创制课题组 - 华中农业大学</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,57 +14,74 @@
             --secondary-green: #81C784;
             --light-green: #E8F5E9;
             --dark-text: #263238;
+            --mobile-breakpoint: 768px; /* 新增响应式断点 */
         }
 
+        /* 基础样式优化 */
         body {
             font-family: 'Segoe UI', '微软雅黑', sans-serif;
-            line-height: 1.6;
+            line-height: 1.8; /* 增加行高提升可读性 */
             color: var(--dark-text);
             background-color: #f5f5f5;
+            -webkit-tap-highlight-color: transparent; /* 移除点击高光 */
         }
 
+        /* 头部响应式改造 */
         .site-header {
             background: var(--primary-green);
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
             color: white;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem); /* 动态字体大小 */
             font-weight: bold;
             font-family: '华文楷体', cursive;
+            text-align: center;
+            padding: 0 1rem;
         }
 
+        /* 导航栏移动端适配 */
         .main-nav {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 1rem;
+            overflow-x: auto; /* 允许横向滚动 */
+            -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+            padding-bottom: 0.5rem;
         }
 
         .main-nav a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 4px;
             transition: background 0.3s;
+            white-space: nowrap; /* 防止文字换行 */
+            font-size: 0.9rem;
         }
 
         .main-nav a:hover {
             background: var(--secondary-green);
         }
 
+        /* 容器响应式调整 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem; /* 减少两侧留白 */
         }
 
+        /* 内容区块优化 */
         section {
             background: white;
             border-radius: 8px;
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 1.5rem;
+            margin: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -70,41 +90,109 @@
             border-bottom: 2px solid var(--secondary-green);
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+            font-size: 1.4rem;
         }
 
+        /* 团队成员卡片优化 */
         .team-member {
             background: var(--light-green);
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 8px;
             margin: 1rem 0;
             transition: transform 0.3s;
         }
 
-        .team-member:hover {
-            transform: translateY(-3px);
-        }
-
         .member-title {
             color: var(--primary-green);
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         .research-area {
             color: var(--secondary-green);
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        .publication-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+        /* 移动端专属样式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            .main-nav {
+                gap: 0.5rem;
+                padding: 0 1rem;
+            }
+
+            .main-nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 1rem;
+                margin: 0.5rem 0;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .team-member {
+                padding: 1rem;
+            }
+
+            .member-title {
+                font-size: 1rem;
+            }
+
+            /* 隐藏复杂学术经历 */
+            .team-member h4 {
+                font-size: 0.9rem;
+            }
+
+            .team-member ul {
+                padding-left: 1rem;
+            }
         }
 
+        /* 超小屏幕优化 */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-nav a {
+                flex: 1 1 45%;
+                text-align: center;
+                margin: 0.2rem;
+            }
+        }
+
+        /* 页脚适配 */
         .site-footer {
             background: var(--primary-green);
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -182,7 +270,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>© 2023 华中农业大学资源与环境学院 生物膜功能与产品创制课题组</p>
+            <p>© 2025 华中农业大学资源与环境学院 生物膜功能与产品创制课题组</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-weixin"></i></a>
                 <a href="#"><i class="far fa-envelope"></i></a>
