@@ -2,56 +2,60 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 增强viewport设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <!-- 添加iOS状态栏样式 -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>首页 - 生物膜功能与产品创制课题组</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-green: #2E7D32;
-            --secondary-green: #81C784;
-            --light-green: #E8F5E9;
-            --dark-text: #263238;
-            --mobile-breakpoint: 768px; /* 新增响应式断点 */
+            --primary-color: #2E7D32;  /* 深墨绿 */
+            --secondary-color: #6B8E23;  /* 橄榄绿 */
+            --accent-color: #C5E17A;  /* 浅黄绿 */
+            --neutral-light: #F8F9F2;
+            --neutral-dark: #2D2F28;
+            --font-title: '华文楷体', cursive;
+            --font-body: '微软雅黑', sans-serif;
+            --mobile-breakpoint: 768px;
         }
 
-        /* 基础样式优化 */
         body {
-            font-family: 'Segoe UI', '微软雅黑', sans-serif;
-            line-height: 1.8; /* 增加行高提升可读性 */
-            color: var(--dark-text);
-            background-color: #f5f5f5;
-            -webkit-tap-highlight-color: transparent; /* 移除点击高光 */
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--neutral-dark);
+            background: var(--neutral-light);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 头部响应式改造 */
+        /* 新版导航栏 */
         .site-header {
-            background: var(--primary-green);
+            background: var(--primary-color);
             padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo {
-            color: white;
-            font-size: clamp(1.5rem, 5vw, 2rem); /* 动态字体大小 */
-            font-weight: bold;
-            font-family: '华文楷体', cursive;
-            text-align: center;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 1rem;
         }
 
-        /* 导航栏移动端适配 */
+        .logo {
+            color: white;
+            font-family: var(--font-title);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            letter-spacing: 1px;
+        }
+
         .main-nav {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            overflow-x: auto; /* 允许横向滚动 */
-            -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+            gap: 1.5rem;
+            overflow-x: auto;
             padding-bottom: 0.5rem;
         }
 
@@ -59,105 +63,85 @@
             color: white;
             text-decoration: none;
             padding: 0.8rem 1.2rem;
-            border-radius: 4px;
-            transition: background 0.3s;
-            white-space: nowrap; /* 防止文字换行 */
-            font-size: 0.9rem;
-        }
-
-        .main-nav a:hover {
-            background: var(--secondary-green);
-        }
-
-        /* 容器响应式调整 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem; /* 减少两侧留白 */
-        }
-
-        /* 内容区块优化 */
-        section {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--secondary-green);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-        }
-
-        /* 团队成员卡片优化 */
-        .team-member {
-            background: var(--light-green);
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            transition: transform 0.3s;
-        }
-
-        .member-title {
-            color: var(--primary-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .research-area {
-            color: var(--secondary-green);
-            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+            white-space: nowrap;
             font-size: 0.95rem;
         }
 
-        /* 移动端专属样式 */
+        .main-nav a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 新版简介卡片 */
+        .intro-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .intro-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--neutral-dark);
+        }
+
+        /* 特色区块 */
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        /* 响应式优化 */
         @media (max-width: 768px) {
-            .container {
-                padding: 0.5rem;
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .main-nav {
-                gap: 0.5rem;
-                padding: 0 1rem;
+                width: 100%;
+                gap: 0.8rem;
+                padding: 0.5rem 0;
             }
 
             .main-nav a {
                 padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            section {
-                padding: 1rem;
-                margin: 0.5rem 0;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
-            .team-member {
-                padding: 1rem;
-            }
-
-            .member-title {
-                font-size: 1rem;
-            }
-
-            /* 隐藏复杂学术经历 */
-            .team-member h4 {
                 font-size: 0.9rem;
             }
 
-            .team-member ul {
-                padding-left: 1rem;
+            .intro-card {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
             }
         }
 
-        /* 超小屏幕优化 */
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.3rem;
@@ -175,30 +159,47 @@
             }
         }
 
-        /* 页脚适配 */
+        /* 页脚美化 */
         .site-footer {
-            background: var(--primary-green);
+            background: var(--primary-color);
             color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            font-size: 0.9rem;
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
 
         .social-links a {
-            display: inline-block;
-            padding: 0.8rem;
-            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
     <header class="site-header">
-        <div class="container">
+        <div class="nav-container">
             <h1 class="logo">生物膜功能与产品创制课题组</h1>
             <nav class="main-nav">
                 <a href="index.html">首页</a>
@@ -210,27 +211,141 @@
         </div>
     </header>
 
-    <main class="container">
-        <section>
-            <h2>代表性科研成果</h2>
-            <div class="publication-list">
-                <div class="team-member">
-                    <h3 class="member-title">2025年发表论文</h3>
-                    <ul>
-                        <li>吴一超,张铭,高春辉等.土壤生物膜与退化土壤修复...</li>
-                        <!-- 其他论文条目 -->
-                    </ul>
-                </div>
+<main class="container">
+    <section>
+        <h2>近年课题组科研成果</h2>
+
+        <!-- 2025年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2025年</h3>
+                <ul>
+                    <li>吴一超, 张铭, 高春辉, 等. 土壤生物膜与退化土壤修复[J/OL]. 科学通报, 1-11[2025-05-27].</li>
+                    <li>方临川, 胡紫莹, 崔庆亮, 等. 合成菌群构建与应用：提升土壤健康新策略[J/OL]. 土壤学报, 1-15[2025-05-27].</li>
+                </ul>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- 2024年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2024年</h3>
+                <ul>
+                    <li>陈彦昭, 许书麟, 渠晨晨, 等. 细菌根际黏附的界面作用机制研究[J]. 华中农业大学学报, 2024,43(04):25-32. DOI:10.13300/j.cnki.hnlkxb.2024.04.004</li>
+                    <li>苏兴雷, 渠晨晨, 康杰, 等. 微生物驱动土壤矿物结合态有机碳的形成[J]. 科学通报, 2024,69(22):3327-3338.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2023年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2023年</h3>
+                <ul>
+                    <li>Chen, J.; Qu, C.; et al. <a href="https://doi.org/10.1016/j.jhazmat.2023.131651" target="_blank">Extracellular polymeric substances and mineral interfacial reactions control the simultaneous immobilization and reduction of arsenic (As(V))</a>. Journal of Hazardous Materials 2023, 456, 131651.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2022年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2022年</h3>
+                <ul>
+                    <li>渠晨晨, 蔡鹏, 陈今朝, 等. 生物大分子与重金属互作研究方法与微观机制[J]. 科学通报, 2022,67(35):4192-4205.</li>
+                    <li>Qu, C., et al. Functional group diversity for the adsorption of lead(Pb) to bacterial cells and extracellular polymeric substances. Environmental Pollution 2022, 295, 118651.</li>
+                    <li>Qu, C., et al. Humic acids restrict the transformation and the stabilization of Cd by iron (hydr)oxides. Journal of Hazardous Materials 2022, 430, 128365.</li>
+                    <li>Wang, W., et al. Facet-dependent adsorption of aluminum(iii) on hematite nanocrystals and the influence on mineral transformation. Environmental Science: Nano 2022, 9(6), 2073-2085.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2021年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2021年</h3>
+                <ul>
+                    <li>Qu, C., et al. Mechanistic investigation and modeling of Cd immobilization by iron (hydr)oxide-humic acid coprecipitates. Journal of Hazardous Materials 2021, 420, 126603.</li>
+                    <li>Yang, S., et al. Soil phyllosilicate and iron oxide inhibit the quorum sensing of Chromobacterium violaceum. Soil Ecology Letters 2021, 3, 22-31.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2020年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2020年</h3>
+                <ul>
+                    <li>Qu, C., et al. The role of interfacial reactions in controlling the distribution of Cd within goethite-humic acid-bacteria composites. Journal of Hazardous Materials 2020, 124081.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2019年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2019年</h3>
+                <ul>
+                    <li>Qu, C., et al. Heavy metal behaviour at mineral-organo interfaces: Mechanisms, modelling and influence factors. Environment International 2019, 131, 104995.</li>
+                    <li>Qu, C., et al. Size-Dependent Bacterial Toxicity of Hematite Particles. Environmental Science & Technology 2019, 53, 8147-8156.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2018年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2018年</h3>
+                <ul>
+                    <li>Yonggang Xiang, et al. Enhanced visible light photocatalytic activity of TiO2 assisted by organic semiconductors. Journal of Materials Chemistry A 2018, 6, 153-159.</li>
+                    <li>Zixin Yang, et al. Controllable synthesis of Bi2MoO6 nanosheets and their facet-dependent visible-light-driven photocatalytic activity. Applied Surface Science 2018, 430, 505-514.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2017年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2017年</h3>
+                <ul>
+                    <li>Tianyu Gao, et al. Preparation of N-Doped Double-Walled Carbon Nanotube-TiO2 Hybrid. Journal of Nanoscience and Nanotechnology 2017, 17, 1510-1516.</li>
+                    <li>Kai Ouyang, et al. Metal-free inactivation of E. coli O157:H7 by fullerene/C3N4 hybrid. Ecotoxicology and Environmental Safety 2017, 136, 40–45.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2016年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2016年</h3>
+                <ul>
+                    <li>Kai Ouyang, et al. Efficient Photocatalytic Disinfection of Escherichia coli O157:H7 using C70-TiO2 Hybrid. Scientific Reports 2016, 6, 25702.</li>
+                    <li>Huihui Du, et al. Cd(II) Sorption on Montmorillonite-Humic acid-Bacteria Composites. Scientific Reports 2016, 6, 19499.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2015年 -->
+        <div class="publication-list">
+            <div class="team-member">
+                <h3 class="member-title">2015年</h3>
+                <ul>
+                    <li>Dong Xiao, et al. Hydrothermal synthesis of Fe2O3/g-C3N4 composite and its photocatalytic reduction of Cr(VI). Applied Surface Science 2015, 358, 181-187.</li>
+                    <li>Ibrahim Mohamed, et al. Ecological restoration of an acidic Cd contaminated soil using bamboo biochar application. Ecological Engineering 2015, 84, 67-76.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
 
     <footer class="site-footer">
-        <div class="container">
+        <div class="footer-container">
             <p>© 2025 华中农业大学资源与环境学院 生物膜功能与产品创制课题组</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-weixin"></i></a>
                 <a href="#"><i class="far fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-orcid"></i></a>
             </div>
         </div>
     </footer>

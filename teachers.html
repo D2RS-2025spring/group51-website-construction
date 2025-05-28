@@ -2,56 +2,60 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 增强viewport设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <!-- 添加iOS状态栏样式 -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>教师团队 -生物膜功能与产品创制课题组</title>
+    <title>首页 - 生物膜功能与产品创制课题组</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-green: #2E7D32;
-            --secondary-green: #81C784;
-            --light-green: #E8F5E9;
-            --dark-text: #263238;
-            --mobile-breakpoint: 768px; /* 新增响应式断点 */
+            --primary-color: #2E7D32;  /* 深墨绿 */
+            --secondary-color: #6B8E23;  /* 橄榄绿 */
+            --accent-color: #C5E17A;  /* 浅黄绿 */
+            --neutral-light: #F8F9F2;
+            --neutral-dark: #2D2F28;
+            --font-title: '华文楷体', cursive;
+            --font-body: '微软雅黑', sans-serif;
+            --mobile-breakpoint: 768px;
         }
 
-        /* 基础样式优化 */
         body {
-            font-family: 'Segoe UI', '微软雅黑', sans-serif;
-            line-height: 1.8; /* 增加行高提升可读性 */
-            color: var(--dark-text);
-            background-color: #f5f5f5;
-            -webkit-tap-highlight-color: transparent; /* 移除点击高光 */
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--neutral-dark);
+            background: var(--neutral-light);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 头部响应式改造 */
+        /* 新版导航栏 */
         .site-header {
-            background: var(--primary-green);
+            background: var(--primary-color);
             padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo {
-            color: white;
-            font-size: clamp(1.5rem, 5vw, 2rem); /* 动态字体大小 */
-            font-weight: bold;
-            font-family: '华文楷体', cursive;
-            text-align: center;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 1rem;
         }
 
-        /* 导航栏移动端适配 */
+        .logo {
+            color: white;
+            font-family: var(--font-title);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            letter-spacing: 1px;
+        }
+
         .main-nav {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            overflow-x: auto; /* 允许横向滚动 */
-            -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+            gap: 1.5rem;
+            overflow-x: auto;
             padding-bottom: 0.5rem;
         }
 
@@ -59,105 +63,85 @@
             color: white;
             text-decoration: none;
             padding: 0.8rem 1.2rem;
-            border-radius: 4px;
-            transition: background 0.3s;
-            white-space: nowrap; /* 防止文字换行 */
-            font-size: 0.9rem;
-        }
-
-        .main-nav a:hover {
-            background: var(--secondary-green);
-        }
-
-        /* 容器响应式调整 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem; /* 减少两侧留白 */
-        }
-
-        /* 内容区块优化 */
-        section {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--secondary-green);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-        }
-
-        /* 团队成员卡片优化 */
-        .team-member {
-            background: var(--light-green);
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            transition: transform 0.3s;
-        }
-
-        .member-title {
-            color: var(--primary-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .research-area {
-            color: var(--secondary-green);
-            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+            white-space: nowrap;
             font-size: 0.95rem;
         }
 
-        /* 移动端专属样式 */
+        .main-nav a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 新版简介卡片 */
+        .intro-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .intro-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--neutral-dark);
+        }
+
+        /* 特色区块 */
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        /* 响应式优化 */
         @media (max-width: 768px) {
-            .container {
-                padding: 0.5rem;
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .main-nav {
-                gap: 0.5rem;
-                padding: 0 1rem;
+                width: 100%;
+                gap: 0.8rem;
+                padding: 0.5rem 0;
             }
 
             .main-nav a {
                 padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            section {
-                padding: 1rem;
-                margin: 0.5rem 0;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
-            .team-member {
-                padding: 1rem;
-            }
-
-            .member-title {
-                font-size: 1rem;
-            }
-
-            /* 隐藏复杂学术经历 */
-            .team-member h4 {
                 font-size: 0.9rem;
             }
 
-            .team-member ul {
-                padding-left: 1rem;
+            .intro-card {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
             }
         }
 
-        /* 超小屏幕优化 */
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.3rem;
@@ -175,30 +159,47 @@
             }
         }
 
-        /* 页脚适配 */
+        /* 页脚美化 */
         .site-footer {
-            background: var(--primary-green);
+            background: var(--primary-color);
             color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            font-size: 0.9rem;
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
 
         .social-links a {
-            display: inline-block;
-            padding: 0.8rem;
-            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
     <header class="site-header">
-        <div class="container">
+        <div class="nav-container">
             <h1 class="logo">生物膜功能与产品创制课题组</h1>
             <nav class="main-nav">
                 <a href="index.html">首页</a>
@@ -210,26 +211,109 @@
         </div>
     </header>
 
- <main class="container">
-        <section>
-            <h2>教师团队</h2>
-            <div class="team-member">
-                <h3 class="member-title">戴珂 副教授</h3>
-                <!-- 戴老师详细信息 -->
+<main class="container">
+    <section>
+        <h2>教师团队</h2>
+
+        <!-- 渠晨晨老师 -->
+        <div class="team-member">
+            <h3 class="member-title">渠晨晨 副教授</h3>
+            <div class="member-info">
+                <p><strong>基本信息：</strong>博士，副教授，中共党员</p>
+                <p><strong>办公室：</strong>资环楼513</p>
+                <p><strong>邮箱：</strong><a href="mailto:qcc@mail.hzau.edu.cn">qcc@mail.hzau.edu.cn</a></p>
+                <p><strong>研究方向：</strong>土壤生物化学，矿物-微生物界面作用及其环境效应。重点关注微生物参与的土壤界面过程及其环境效应。</p>
+                
+                <div class="academic-achievements">
+                    <h4>近年学术成果：</h4>
+                    <ol class="publication-list">
+                        <li>吴一超,张铭,高春辉,等.土壤生物膜与退化土壤修复[J/OL].科学通报,1-11[2025-05-27].</li>
+                        <li>方临川,胡紫莹,崔庆亮,等.合成菌群构建与应用：提升土壤健康新策略[J/OL].土壤学报,1-15[2025-05-27].</li>
+                        <li>陈彦昭,许书麟,渠晨晨,等.细菌根际黏附的界面作用机制研究[J].华中农业大学学报,2024,43(04):25-32.</li>
+                        <li>苏兴雷,渠晨晨,康杰,等.微生物驱动土壤矿物结合态有机碳的形成[J].科学通报,2024,69(22):3327-3338.</li>
+                        <li>渠晨晨,蔡鹏,史凯祥,等.生物大分子与重金属互作研究方法与微观机制[J].科学通报,2022,67(35):4192-4205.</li>
+                        <li>渠晨晨, 任稳燕, 李秀秀, 蔡鹏, 陈雯莉, & 黄巧云*, 2022. 重新认识土壤有机质. 科学通报, 67(10): 913-923.</li>
+                        <li>Qu, C., Yang, S., Mortimer, M., Zhang, M., Chen, J., Wu, Y., Chen, W., Cai*, P., Huang, Q., 2022. Functional-group diversity for the adsorption of lead(Pb) to bacterial cells and extracellular polymeric substances. Environmental Pollution. 295, 118651.</li>
+                        <li>Qu, C., Chen, J., Mortimer, M., Wu, Y., Cai*, P., Huang, Q., 2022. Humic acids restrict the transformation and the stabilization of Cd by iron (hydr)oxides, Journal of Hazardous Materials. 430, 128365</li>
+                        <li>Qu, C., Fein, J.B., Chen, W.*, Ma, M., Cai, P., Huang, Q.*, 2021. Mechanistic investigation and modeling of Cd immobilization by iron (hydr)oxide-humic acid coprecipitates. Journal of Hazardous Materials. 420, 126603.</li>
+                        <li>Qu, C., Chen, W., Fein, J.B., Cai, P., Huang, Q.*, 2020. The role of interfacial reactions in controlling the distribution of Cd within goethite-humic acid-bacteria composites. Journal of Hazardous Materials. 124081-124081.</li>
+                        <li>Qu, C., Chen, W.*, Hu, X., Cai, P., Chen, C., Yu, X.-Y., Huang, Q.*, 2019. Heavy metal behaviour at mineral-organo interfaces: Mechanisms, modelling and influence factors. Environment International. 131, 104995-104995.</li>
+                        <li>Qu, C., Qian, S., Chen, L., Guan, Y., Zheng, L., Liu, S., Chen, W.*, Cai, P., Huang, Q.*, 2019. Size-Dependent Bacterial Toxicity of Hematite Particles. Environmental Science & Technology. 53, 8147-8156.</li>
+                        <li>Qu, C., Ma, M., Chen, W.*, Cai, P., Yu, X.-Y., Feng, X., Huang, Q.*, 2018. Modeling of Cd adsorption to goethite-bacteria composites. Chemosphere. 193, 943-950.</li>
+                        <li>Qu, C., Du, H., Ma, M., Chen, W.*, Cai, P., Huang, Q.*, 2018. Pb sorption on montmorillonite-bacteria composites: A combination study by XAFS, ITC and SCM. Chemosphere. 200, 427-436.</li>
+                        <li>Du, H.#, Qu, C.#, Liu, J., Chen, W.*, Cai, P., Shi, Z., Yu, X.-Y., Huang, Q.*, 2017. Molecular investigation on the binding of Cd(II) by the binary mixtures of montmorillonite with two bacterial species. Environmental Pollution. 229, 871-878.</li>
+                        <!-- 其他合作论文 -->
+                        <li>Wang, W., Zhang, W., Fan, Y., Qu, C., Ren, W., Huang, X., Hong, M., Liu, F., Yin, H.*, 2022. Facet-dependent adsorption of aluminum(iii) on hematite nanocrystals and the influence on mineral transformation. Environmental Science: Nano. 9(6), 2073-2085.</li>
+                        <li>Xu, Z., Liu, X., Peng, J., Qu, C., Chen, Y., Zhang, M., Liang, D., Lei, M., Tie, B., Du, H*, 2022. Tungsten–humic substances complexation. Carbon Research. 1(1), 11.</li>
+                        <li>Li, X., Huang, J., Qu, C., Chen, W., Chen, C., Cai, P., Huang, Q*. 2022. Diverse regulations on the accumulation of fungal and bacterial necromass in cropland soils. Geoderma. 410: 115675.</li>
+                        <li>Hu, X., Qu, C., Han, Y., Chen, W., Huang, Q.*, 2022. Elevated temperature altered the binding sequence of Cd with DOM in arable soils. Chemosphere. 288: 132572.</li>
+                        <li>Han, Y., Qu, C., Hu, X., Wang, P., Wan, D., Cai, P., Rong, X., Chen, W., Huang, Q.*, 2022. Warming and humidification mediated changes of DOM composition in an Alfisol. Science of The Total Environment. 805, 150198.</li>
+                        <li>Yang, S., Qu, C., Mukherjee, M., Wu, Y., Huang, Q., Cai, P.*, 2021. Soil phyllosilicate and iron oxide inhibit the quorum sensing of Chromobacterium violaceum. Soil Ecology Letters. 3, 22-31.</li>
+                        <li>Yang, S., Wu, Y., Qu, C., Fein, J.B., He, Y., Huang, Q., Cai, P.*, 2021. Quantitative analysis of the surficial and adhesion properties of the Gram-negative bacterial species Comamonas testosteroni modulated by c-di-GMP. Colloids and Surfaces B: Biointerfaces. 198, 111497.</li>
+                        <li>Xiong, J., Zhou, M., Qu, C., Yu, D., Chen, C., Wang, M., Tan, W.*, 2021. Quantitative analysis of Pb adsorption on sulfhydryl-modified biochar. Biochar. 3, 37-49.</li>
+                        <li>Zhang, M., Peacock, C. L., Cai, P.*, Xiao, K.-Q., Qu, C., Wu, Y., Huang, Q., 2021. Selective retention of extracellular polymeric substances induced by adsorption to and coprecipitation with ferrihydrite. Geochimica et Cosmochimica Acta. 299: 15-34.</li>
+                        <li>Du, H.*, Qu, C., Ma, M., Lei, M., Tie, B., Liu, X., Wei, X., Yang, Y., 2019. Insights into Pb(II) binding by Fe/Al hydroxide–microbe composite: XAFS spectroscopy and isothermal titration calorimetry study. Chemical Geology. 510, 84-90.</li>
+                        <li>Li, F., Xie, G., Huang, J., Zhang, R., Li, Y., Zhang, M., Wang, Y., Li, A., Li, X., Xia, T., Qu, C., Hu, F., Ragauskas, A., Peng, L.*, 2017. OsCESA9 conserved-site mutation leads to largely enhanced plant lodging resistance and biomass enzymatic saccharification by reducing cellulose DP and crystallinity in rice. Plant Biotechnology Journal. 15(9): 1093-1104.</li>
+                        <li>Liang, X., Wei, G., Xiong, J., Tan, F., He, H.*, Qu, C., Yin, H., Zhu, J., Zhu, R., & Qin, Z. 2017. Adsorption isotherm, mechanism, and geometry of Pb(II) on magnetites substituted with transition metals. Chemical Geology. 470, 132–140.</li>
+                    </ol>
+                </div>
             </div>
-            <div class="team-member">
-                <h3 class="member-title">渠晨晨 副教授</h3>
-                <!-- 渠老师详细信息 -->
-            </div>
-        </section>
-    </main>
+        </div>
+
+       <!-- 戴珂老师 -->
+<div class="team-member">
+    <h3 class="member-title">戴珂 副教授</h3>
+    <div class="member-info">
+        <p><strong>基本信息：</strong>男，博士，副教授，硕士生导师，中共党员</p>
+        <p><strong>办公室：</strong>资环楼526</p>
+        <p><strong>邮箱：</strong><a href="mailto:dk@mail.hzau.edu.cn">dk@mail.hzau.edu.cn</a></p>
+        <p><strong>科研方向：</strong>土壤化学、环境化学</p>
+        
+        <div class="academic-achievements">
+            <h4>专利：</h4>
+            <ol class="patent-list">
+                <li>一种锐钛矿相介孔纳米二氧化钛的制备方法. 专利号: 200510018769.7 (已转让). 第二完成人</li>
+                <li>碳纳米管/二氧化钛纳米复合光催化剂及其制备方法和用途. 专利号: ZL 200810048905.0. 第二完成人</li>
+                <li>一种碳60/二氧化钛纳米复合光催化剂及其制备方法和用途. 专利号: ZL 200810048904.6. 第二完成人</li>
+            </ol>
+
+            <h4>近年论文：</h4>
+            <ol class="publication-list">
+                <li>Yonggang Xiang, Xuepeng Wang, Xiaohu Zhang, Huijie Hou, Ke Dai, Qiaoyun Huang and Hao Chen. Enhanced visible light photocatalytic activity of TiO2 assisted by organic semiconductors: a structure optimization strategy of conjugated polymers. Journal of Materials Chemistry A, 2018, 6, 153-159.</li>
+                <li>Zixin Yang, Min Shen, Ke Dai, Xuehao Zhang, Hao Chen. Controllable synthesis of Bi2MoO6 nanosheets and their facet-dependent visible-light-driven photocatalytic activity. Applied Surface Science, 2018, 430, 505-514.</li>
+                <li>Tianyu Gao, Zhiwei Liu, Feiyue Cheng, Ke Dai*, Changjun Yang, and Hao Chen. Preparation of N-Doped Double-Walled Carbon Nanotube-TiO2 Hybrid with Efficient Visible-Light Photocatalytic Activity via a Two-Step Method. Journal of Nanoscience and Nanotechnology, 2017, 17, 1510-1516.</li>
+                <li>Kai Ouyang, Ke Dai, Hao Chen, Qiaoyun Huang, Chunhui Gao, Peng Cai. Metal-free inactivation of E. coli O157:H7 by fullerene/C3N4 hybrid under visible light irradiation. Ecotoxicology and Environmental Safety, 2017, 136, 40–45.</li>
+                <li>Shengyao Wang, Xianglong Yang, Xuehao Zhang, Xing Ding, Zixin Yang, Ke Dai, Hao Chen. A plate-on-plate sandwiched Z-scheme heterojunction photocatalyst: BiOBr-Bi2MoO6 with enhanced photocatalytic performance. Applied Surface Science, 2017, 391, 194–201.</li>
+                <li>Kai Ouyang#, Ke Dai#, Sharon L. Walker, Qiaoyun Huang, Xixiang Yin & Peng Cai. Efficient Photocatalytic Disinfection of Escherichia coli O157:H7 using C70-TiO2 Hybrid under Visible Light Irradiation. Scientific Reports, 2016, 6, 25702.</li>
+                <li>Huihui Du, Wenli Chen, Peng Cai, Xingmin Rong, Ke Dai, Caroline L. Peacock & Qiaoyun Huang. Cd(II) Sorption on Montmorillonite-Humic acid-Bacteria Composites. Scientific Reports, 2016, 6, 19499.</li>
+                <li>Dong Xiao, Ke Dai*, Yang Qu, Yeping Yin, Hao Chen*. Hydrothermal synthesis of Fe2O3/g-C3N4 composite and its efficient photocatalytic reduction of Cr(VI) under visible light. Applied Surface Science 358(2015)181-187.</li>
+                <li>Shengyao Wang, Changwei Liu, Ke Dai*, Peng Cai, Hao Chen*, Changjun Yang, Qiaoyun Huang. Fullerene C70–TiO2 hybrids with enhanced photocatalytic activity under visible light irradiation. Journal of Materials Chemistry A 3(2015)21090-21098.</li>
+                <li>Tianyu Gao, Guocheng Sun, Feiyue Cheng, Ke Dai*, Hao Chen*, Kejian Deng, Qiaoyun Huang. Enhanced visible-light-driven photoactivities of single-walled carbon nanotubes coated with N doping TiO2 nanoparticles. RSC Advances 5 (2015) 28973-28979.</li>
+                <li>Weijiong Dai, Junqing Yan, Ke Dai*, Landong Li, Naijia Guan*. Ultrafine metal nanoparticles loaded on TiO2 nanorods: Synthesis strategy and photocatalytic activity. Chinese Journal of Catalysis 36(2015)1968–1975.</li>
+                <li>Ibrahim Mohamed, Guo-shi Zhang, Zhi-guo Li, Yi Liu, Fang Chen, Ke Dai. Ecological restoration of an acidic Cd contaminated soil using bamboo biochar application. Ecological Engineering 84(2015)67-76.</li>
+                <li>Xiaomin He, Ke Dai, Aimin Li, Hao Chen*. Occurrence and assessment of perfluorinated compounds in fish from the Danjiangkou reservoir and Hanjiang river in China. Food Chemistry 174 (2015) 180-187.</li>
+                <li>Yang Qu*, Hui Wang, Hao Chen, Jie Xiao, Zhidong Lin, Ke Dai. Highly sensitive and selective toluene sensor based on Ce-doped coral-like SnO2. RSC Advances 5 (2015) 16446-16449.</li>
+                <li>Bo Chai*, Qian Xu, Jing Li, Ke Dai. Synthesis of Floriated BiOI Decorated with TiO2 Nanoparticles for Efficient Photocatalytic Activity Under Visible Light. Science of Advanced Materials 6 (2014) 1806-1813.</li>
+                <li>Hui Wang, Yang Qu, Hao Chen, Zhidong Lin, Ke Dai. Highly selective n-butanol gas sensor based on mesoporous Sn02 prepared with hydrothermal treatment. Sensors and Actuators B-Chemical 201 (2014) 153-159.</li>
+                <li>Bo Chai, Jing Li, Qian Xu, Ke Dai. Facile synthesis of reduced graphene oxide/WO3 nanoplates composites with enhanced photocatalytic activity. Materials Letters 120 (2014) 177-181.</li>
+                <li>Huayong Wu, Wenli Chen, Xingmin Rong, Peng Cai, Ke Dai, Qiaoyun Huang. In situ ATR-FTIR study on the adhesion of Pseudomonas putida to Red soil colloids. J Soils Sediments 14 (2014) 504-514.</li>
+                <li>Huayong Wu, Wenli Chen, Xingmin Rong, Peng Cai, Ke Dai, Qiaoyun Huang. Soil Colloids and Minerals Modulate Metabolic Activity of Pseudomonas putida Measured Using Microcalorimetry. Geomicrobiology Journal 31 (2014) 590-596.</li>
+                <li>Zhineng Hong, Gang Zhao, Wenli Chen, Xingmin Rong, Peng Cai, Ke Dai, Qiaoyun Huang. Effects of Solution Chemistry on Bacterial Adhesion with Phyllosilicates and Goethite Explained by the Extended DLVO Theory. Geomicrobiology Journal 31 (2014) 419-430.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+    </section>
+</main>
+
 
     <footer class="site-footer">
-        <div class="container">
+        <div class="footer-container">
             <p>© 2025 华中农业大学资源与环境学院 生物膜功能与产品创制课题组</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-weixin"></i></a>
                 <a href="#"><i class="far fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-orcid"></i></a>
             </div>
         </div>
     </footer>

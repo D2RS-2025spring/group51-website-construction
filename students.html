@@ -2,56 +2,60 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 增强viewport设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <!-- 添加iOS状态栏样式 -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>研究生团队 - 生物膜功能与产品创制课题组</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+     <style>
         :root {
-            --primary-green: #2E7D32;
-            --secondary-green: #81C784;
-            --light-green: #E8F5E9;
-            --dark-text: #263238;
-            --mobile-breakpoint: 768px; /* 新增响应式断点 */
+            --primary-color: #2E7D32;  /* 深墨绿 */
+            --secondary-color: #6B8E23;  /* 橄榄绿 */
+            --accent-color: #C5E17A;  /* 浅黄绿 */
+            --neutral-light: #F8F9F2;
+            --neutral-dark: #2D2F28;
+            --card-border: 1px solid #E0E0E0;
+            --font-title: '华文楷体', cursive;
+            --font-body: '微软雅黑', sans-serif;
         }
 
-        /* 基础样式优化 */
         body {
-            font-family: 'Segoe UI', '微软雅黑', sans-serif;
-            line-height: 1.8; /* 增加行高提升可读性 */
-            color: var(--dark-text);
-            background-color: #f5f5f5;
-            -webkit-tap-highlight-color: transparent; /* 移除点击高光 */
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--neutral-dark);
+            background: var(--neutral-light);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* 头部响应式改造 */
+        /* 新版导航栏 */
         .site-header {
-            background: var(--primary-green);
+            background: var(--primary-color);
             padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo {
-            color: white;
-            font-size: clamp(1.5rem, 5vw, 2rem); /* 动态字体大小 */
-            font-weight: bold;
-            font-family: '华文楷体', cursive;
-            text-align: center;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 1rem;
         }
 
-        /* 导航栏移动端适配 */
+        .logo {
+            color: white;
+            font-family: var(--font-title);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            letter-spacing: 1px;
+        }
+
         .main-nav {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            overflow-x: auto; /* 允许横向滚动 */
-            -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+            gap: 1.5rem;
+            overflow-x: auto;
             padding-bottom: 0.5rem;
         }
 
@@ -59,105 +63,172 @@
             color: white;
             text-decoration: none;
             padding: 0.8rem 1.2rem;
-            border-radius: 4px;
-            transition: background 0.3s;
-            white-space: nowrap; /* 防止文字换行 */
-            font-size: 0.9rem;
-        }
-
-        .main-nav a:hover {
-            background: var(--secondary-green);
-        }
-
-        /* 容器响应式调整 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem; /* 减少两侧留白 */
-        }
-
-        /* 内容区块优化 */
-        section {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--secondary-green);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-        }
-
-        /* 团队成员卡片优化 */
-        .team-member {
-            background: var(--light-green);
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            transition: transform 0.3s;
-        }
-
-        .member-title {
-            color: var(--primary-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .research-area {
-            color: var(--secondary-green);
-            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s;
+            white-space: nowrap;
             font-size: 0.95rem;
         }
 
-        /* 移动端专属样式 */
+        .main-nav a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 研究生卡片样式 */
+        .student-category {
+            margin: 2rem 0;
+        }
+
+        .category-title {
+            color: var(--primary-green);
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            border-left: 4px solid var(--secondary-green);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            border: var(--card-border);
+            transition: transform 0.3s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .student-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--secondary-green);
+        }
+
+        .student-name {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .student-email {
+            color: #666;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .student-email::before {
+            content: "📧";
+            font-size: 1.1rem;
+        }
+
+        .student-info p {
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
+            color: var(--neutral-dark);
+        }
+
+        .student-info strong {
+            color: var(--primary-green);
+        }
+
+        .activities, .achievements {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--neutral-light);
+            border-radius: 8px;
+        }
+
+        .activities h5, .achievements h5 {
+            color: var(--secondary-green);
+            margin: 0 0 0.8rem 0;
+            font-size: 1rem;
+        }
+
+        .activities ul, .achievements ol {
+            padding-left: 1.2rem;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .achievements a {
+            color: var(--primary-green);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--secondary-green);
+        }
+
+        /* 内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 新版简介卡片 */
+        .intro-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .intro-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--neutral-dark);
+        }
+
+        /* 特色区块 */
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+       /* 响应式设计 */
         @media (max-width: 768px) {
-            .container {
-                padding: 0.5rem;
+            .student-grid {
+                grid-template-columns: 1fr;
             }
-
-            .main-nav {
-                gap: 0.5rem;
-                padding: 0 1rem;
-            }
-
-            .main-nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            section {
-                padding: 1rem;
-                margin: 0.5rem 0;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
-            .team-member {
+            
+            .student-card {
                 padding: 1rem;
             }
-
-            .member-title {
-                font-size: 1rem;
-            }
-
-            /* 隐藏复杂学术经历 */
-            .team-member h4 {
-                font-size: 0.9rem;
-            }
-
-            .team-member ul {
-                padding-left: 1rem;
+            
+            .student-name {
+                font-size: 1.1rem;
             }
         }
 
-        /* 超小屏幕优化 */
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.3rem;
@@ -175,30 +246,47 @@
             }
         }
 
-        /* 页脚适配 */
+        /* 页脚美化 */
         .site-footer {
-            background: var(--primary-green);
+            background: var(--primary-color);
             color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            font-size: 0.9rem;
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
         }
 
         .social-links a {
-            display: inline-block;
-            padding: 0.8rem;
-            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
     <header class="site-header">
-        <div class="container">
+        <div class="nav-container">
             <h1 class="logo">生物膜功能与产品创制课题组</h1>
             <nav class="main-nav">
                 <a href="index.html">首页</a>
@@ -210,27 +298,300 @@
         </div>
     </header>
 
-    <main class="container">
-        <section>
-            <h2>研究生团队</h2>
-            <div class="team-member">
-                <h3 class="member-title">博士研究生</h3>
-                <div class="research-area">陈今朝、陈彦昭</div>
-                <p>研究方向涵盖土壤微生物电化学...</p>
+   <main class="container">
+    <section>
+        <h2>研究生团队</h2>
+        
+<!-- 博士研究生 -->
+<div class="student-category">
+    <h3 class="category-title">博士研究生</h3>
+    <div class="student-grid">
+        
+        <!-- 陈今朝 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">陈今朝</h4>
+                <a class="student-email" href="mailto:chenjinzhao123@qq.com">📧 chenjinzhao123@qq.com</a>
             </div>
-            <div class="team-member">
-                <h3 class="member-title">硕士研究生</h3>
-                <div class="research-area">赵家乐、屈发好、许书麟等15人</div>
-                <!-- 详细研究生列表 -->
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤生物膜与重金属</p>
+                <p><strong>兴趣：</strong>锻炼与学习</p>
+                <div class="achievements">
+                    <h5>代表性成果：</h5>
+                    <ol>
+                        <li>Chen, J.; et al. <a href="https://doi.org/10.1016/j.jhazmat.2023.131651" target="_blank">Extracellular polymeric substances and mineral interfacial reactions control the simultaneous immobilization and reduction of arsenic (As(V))</a>. Journal of hazardous materials 2023</li>
+                        <li>渠晨晨, 蔡鹏, 陈今朝, 等. 生物大分子与重金属互作研究方法与微观机制. 科学通报 2022</li>
+                    </ol>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- 陈彦昭 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">陈彦昭</h4>
+                <a class="student-email" href="mailto:871325024@qq.com">📧 871325024@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>分子动力学</p>
+                <p><strong>兴趣：</strong>篮球</p>
+                <div class="achievements">
+                    <h5>代表性成果：</h5>
+                    <ul>
+                        <li>陈彦昭, 等. <a href="https://doi.org/10.13300/j.cnki.hnlkxb.2024.04.004" target="_blank">细菌根际黏附的界面作用机制研究</a>. 华中农业大学学报 2024</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 硕士研究生 -->
+<div class="student-category">
+    <h3 class="category-title">硕士研究生</h3>
+    <div class="student-grid">
+        
+        <!-- 许书麟 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">许书麟</h4>
+                <a class="student-email" href="mailto:1214340968@qq.com">📧 1214340968@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>根际界面，微生物-植物互作</p>
+                <p><strong>兴趣：</strong>篮球</p>
+                <div class="activities">
+                    <h5>学术活动：</h5>
+                    <ul>
+                        <li>绿博讲坛</li>
+                        <li>学术晚茶</li>
+                        <li>学术论坛</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 屈发好 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">屈发好</h4>
+                <a class="student-email" href="mailto:qufahao@163.com">📧 qufahao@163.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>资源利用与植物保护，土壤重金属减污</p>
+                <p><strong>兴趣：</strong>摄影，唱歌</p>
+                <div class="activities">
+                    <h5>学术活动：</h5>
+                    <ul>
+                        <li>第十二届地质微生物学学术讨论会</li>
+                        <li>学术三分钟比赛</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 赵家乐 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">赵家乐</h4>
+                <a class="student-email" href="mailto:1417891355@qq.com">📧 1417891355@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤固碳</p>
+                <p><strong>兴趣：</strong>体验新鲜事</p>
+                <div class="activities">
+                    <h5>学术活动：</h5>
+                    <ul>
+                        <li>绿博讲坛</li>
+                        <li>学术晚茶</li>
+                        <li>学术论坛</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 李婷 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">李婷</h4>
+                <a class="student-email" href="mailto:2160772384@qq.com">📧 2160772384@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤微生物代谢-有机碳固定</p>
+                <p><strong>兴趣：</strong>观影看展，阅读小说</p>
+            </div>
+        </div>
+
+        <!-- 宋雪琪 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">宋雪琪</h4>
+                <a class="student-email" href="mailto:3557952340@qq.com">📧 3557952340@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤矿物-微生物固氮</p>
+                <p><strong>兴趣：</strong>看书、摄影</p>
+            </div>
+        </div>
+
+        <!-- 孙孟 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">孙孟</h4>
+                <a class="student-email" href="mailto:1535919154@qq.com">📧 1535919154@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>生物有机肥二次发酵</p>
+                <p><strong>兴趣：</strong>运动</p>
+            </div>
+        </div>
+
+        <!-- 刘琪 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">刘琪</h4>
+                <a class="student-email" href="mailto:1319441727@qq.com">📧 1319441727@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>固氮菌</p>
+                <p><strong>兴趣：</strong>舞蹈，摄影</p>
+            </div>
+        </div>
+
+        <!-- 赵一晗 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">赵一晗</h4>
+                <a class="student-email" href="mailto:2088690343@qq.com">📧 2088690343@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>有机无机材料协同堆肥</p>
+                <p><strong>兴趣：</strong>唱歌，足球</p>
+            </div>
+        </div>
+
+        <!-- 李玄同 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">李玄同</h4>
+                <a class="student-email" href="mailto:lxt991224@126.com">📧 lxt991224@126.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤矿物-微生物电子传递</p>
+                <p><strong>兴趣：</strong>摆烂</p>
+            </div>
+        </div>
+
+        <!-- 蒋双林 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">蒋双林</h4>
+                <a class="student-email" href="mailto:2278692018@qq.com">📧 2278692018@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>中地产稻田土壤增温</p>
+                <p><strong>兴趣：</strong>无</p>
+            </div>
+        </div>
+
+        <!-- 刘鑫昊 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">刘鑫昊</h4>
+                <a class="student-email" href="mailto:lxh2609312597@outlook.com">📧 lxh2609312597@outlook.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤微生物快速检测</p>
+                <p><strong>兴趣：</strong>打羽毛球</p>
+            </div>
+        </div>
+
+        <!-- 刘芸芸 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">刘芸芸</h4>
+                <a class="student-email" href="mailto:Liuyunyun2023@163.com">📧 Liuyunyun2023@163.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>光催化-微生物互作</p>
+                <p><strong>兴趣：</strong>美食</p>
+            </div>
+        </div>
+
+        <!-- 谭晨冉 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">谭晨冉</h4>
+                <a class="student-email" href="mailto:2197946589@qq.com">📧 2197946589@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>潜育化土壤改良</p>
+                <p><strong>兴趣：</strong>羽毛球</p>
+            </div>
+        </div>
+
+        <!-- 陈雅平 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">陈雅平</h4>
+                <a class="student-email" href="mailto:cyp011029@163.com">📧 cyp011029@163.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>重金属污染修复</p>
+                <p><strong>兴趣：</strong>听歌、做手工</p>
+            </div>
+        </div>
+
+        <!-- 沈兵飞 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">沈兵飞</h4>
+                <a class="student-email" href="mailto:1977266751@qq.com">📧 1977266751@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>土壤微界面与环境</p>
+                <p><strong>兴趣：</strong>篮球</p>
+            </div>
+        </div>
+
+        <!-- 刘晓英 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">刘晓英</h4>
+                <a class="student-email" href="mailto:1741276620@qq.com">📧 1741276620@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>微生物长效固氮技术</p>
+                <p><strong>兴趣：</strong>钩织</p>
+            </div>
+        </div>
+
+        <!-- 姜泽宇 -->
+        <div class="student-card">
+            <div class="student-header">
+                <h4 class="student-name">姜泽宇</h4>
+                <a class="student-email" href="mailto:726997236@qq.com">📧 726997236@qq.com</a>
+            </div>
+            <div class="student-info">
+                <p><strong>研究方向：</strong>微生物固氮</p>
+                <p><strong>兴趣：</strong>旅游、唱歌</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </section>
+</main>
+
+
     <footer class="site-footer">
-        <div class="container">
+        <div class="footer-container">
             <p>© 2025 华中农业大学资源与环境学院 生物膜功能与产品创制课题组</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-weixin"></i></a>
                 <a href="#"><i class="far fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-orcid"></i></a>
             </div>
         </div>
     </footer>
