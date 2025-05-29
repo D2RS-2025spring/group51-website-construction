@@ -63,7 +63,8 @@
    - 合作是团队项目的关键，小组成员互相帮助才能共同完成网站建设。
 ### 注释
 **项目仓库迁移网址更改问题**
-- 本组项目仓库迁移到课程仓库https://github.com/D2RS-2025spring后，现在的课题组网站地址更改为https://d2rs-2025spring.github.io/group51-website-construction/。因本组成员权限不足，无法修改迁移后的项目仓库说明，右侧栏说明中的仍旧是失效的旧网址https://github.com/Liting-shu/group51-website-construction
+- 本组项目仓库迁移到课程仓库https://github.com/D2RS-2025spring后，现在的课题组网站地址更改为：https://d2rs-2025spring.github.io/group51-website-construction/。
+- 因本组成员权限不足，无法修改迁移后的项目仓库说明，右侧栏说明中仍旧是失效的旧网址：https://github.com/Liting-shu/group51-website-construction。
    
 
 
